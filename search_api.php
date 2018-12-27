@@ -27,6 +27,7 @@ if(isset($_SERVER['HTTP_KEY'])) {
 $pros = array();
 if ($key === $header) {
 	if($_SERVER['REQUEST_METHOD'] == 'GET') {
+		$id = $_GET['id'];
 		$conn = db_connect();
 		$sql = "SELECT p.id, p.name, p.photo, p.created_at, p.updated_at, p.price, p.longitude, p.latitude, t.name as type ,d.address, s.name as service FROM property as p JOIN address as d on p.id = d.property_id JOIN type as t on p.id = t.property_id JOIN property_service on p.id = property_service.propriety_id JOIN service_around as s on s.id =  property_service.service_id WHERE p.id = {$id}";
 		$con_results = mysqli_query($conn, $sql);
